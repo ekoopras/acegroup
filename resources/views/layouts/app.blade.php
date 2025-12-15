@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="{{ asset('app/json/manifest.json') }}">
     <meta name="theme-color" content="#0066ff">
 
     <link rel="apple-touch-icon" href="/icons/icon-192.png">
@@ -117,13 +117,68 @@
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-        .then(() => console.log("Service worker registered"))
-        .catch(err => console.log("SW error: ", err));
-}
-</script>
+<!-- ============ PWA SCRIPT ============ -->
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('{{ asset('app/js/sw.js') }}')
+                    .then(function(registration) {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+
+        // Online/Offline Detection
+        window.addEventListener('online', function() {
+            console.log('You are online');
+            // Bisa tambahkan notifikasi atau reload
+            showNotification('Back online', 'success');
+        });
+
+        window.addEventListener('offline', function() {
+            console.log('You are offline');
+            showNotification('You are offline - app needs internet', 'warning');
+        });
+
+        function showNotification(message, type) {
+            // Simple notification
+            alert(message);
+        }
+
+        // Install Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            
+            // Show install button (optional)
+            showInstallButton();
+        });
+
+        function showInstallButton() {
+            // Buat button install jika mau
+            console.log('App can be installed');
+        }
+
+        function installPWA() {
+            if(deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted install');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }
+        // ======================================
+    </script>
 
 </body>
 </html>
