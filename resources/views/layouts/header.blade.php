@@ -1,27 +1,16 @@
-<!-- HEADER -->
-    <div class="header-bg">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <img src="https://acegroupcenter.com/wp-content/uploads/2025/08/logo-1024x241.png" 
-     alt="Logo"
-     class="header-logo">
+<nav class="navbar fixed-top" style="background-color: #0066ff">
+  <div class="container position-relative">
 
-            <div class="d-flex align-items-center">
-                <span class="me-2 text-white fw-semibold">Hai, User</span>
-                <img src="https://via.placeholder.com/100" class="header-profile" alt="">
-            </div>
-        </div>
+    <!-- Tombol Back -->
+    <a href="{{ route('home') }}" 
+       class="position-absolute start-0 ms-2 text-white">
+      <i class="bi bi-arrow-left fs-4 text-white p-3"></i>
+    </a>
 
+    <!-- Brand di tengah -->
+    <div class="navbar-brand mx-auto text-white">
+      {{ $title ?? 'Bootstrap' }}
     </div>
-    <style>
-    .header-logo {
-        height: 38px;        /* atur tinggi sesuai selera */
-        width: auto;         /* biar proporsional */
-        object-fit: contain; /* menjaga proporsi */
-    }
 
-    @media (max-width: 480px) {
-        .header-logo {
-            height: 34px;    /* untuk mobile */
-        }
-    }
-</style>
+  </div>
+</nav>

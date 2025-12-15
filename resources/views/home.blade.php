@@ -1,8 +1,39 @@
 @extends('layouts.app')
 
+@section('showBottonMenu', true)
+
 @section('content')
 
+<!-- HEADER -->
+    <div class="header-bg">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <img src="https://acegroupcenter.com/wp-content/uploads/2025/08/logo-1024x241.png" 
+     alt="Logo"
+     class="header-logo">
+
+            <div class="d-flex align-items-center">
+                <span class="me-2 text-white fw-semibold">Hai, User</span>
+                <img src="https://via.placeholder.com/100" class="header-profile" alt="">
+            </div>
+        </div>
+
+    </div>
+    <style>
+    .header-logo {
+        height: 38px;        /* atur tinggi sesuai selera */
+        width: auto;         /* biar proporsional */
+        object-fit: contain; /* menjaga proporsi */
+    }
+
+    @media (max-width: 480px) {
+        .header-logo {
+            height: 34px;    /* untuk mobile */
+        }
+    }
+</style>
+
 <!-- FEATURE CARD -->
+<div class="container">
         <div class="card shadow-sm card-feature">
             <div class="card-body d-flex align-items-center">
                 <div class="flex-grow-1">
@@ -19,10 +50,12 @@
 
         <div class="row g-3 pb-5 mb-5">
             <div class="col-6">
-                <div class="topic-box">
-                    <i class="bi bi-laptop-fill fs-1"></i>
-                    <div class="fw-semibold small">Laptop</div>
-                </div>
+                <a href="{{ route('product-laptop.index') }}" class="text-decoration-none text-dark">
+                    <div class="topic-box">
+                        <i class="bi bi-laptop-fill fs-1"></i>
+                        <div class="fw-semibold small">Laptop</div>
+                    </div>
+                </a>
             </div>
 
             <div class="col-6">
@@ -46,5 +79,6 @@
                 </div>
             </div>
         </div>
+</div>
 
 @endsection

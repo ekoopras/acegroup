@@ -31,7 +31,7 @@
 
         /* Header */
         .header-bg {
-            background: linear-gradient(135deg, #4da6ff, #0066ff);
+            background: #0066ff;
             color: white;
             padding: 40px 20px 80px;
             border-bottom-left-radius: 40px;
@@ -99,15 +99,18 @@
 
 <div class="mobile-wrapper">
 
-    @include('layouts.header')
+        @if(View::hasSection('showNavbar'))
+            @include('layouts.header')
+        @endif
 
-    <div class="container">
 
         @yield('content')
 
-    </div>
+         @if(View::hasSection('showBottonMenu'))
+            @include('layouts.bottom-menu')
+        @endif
 
-    @include('layouts.bottom-menu')
+    
 
 </div>
 
