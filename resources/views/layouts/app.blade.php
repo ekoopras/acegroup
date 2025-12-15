@@ -9,11 +9,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-    <link rel="manifest" href="{{ asset('app/json/manifest.json') }}">
-    <meta name="theme-color" content="#0066ff">
-
-    <link rel="apple-touch-icon" href="/icons/icon-192.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- PWA  -->
+    <meta name="theme-color" content="#6777ef"/>
+    <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
 
     <style>
         body {
@@ -97,6 +96,11 @@
 
 <body>
 
+    <!-- Add this inside <body> -->
+<button id="pwa-install-btn" style="display:none; position: fixed; bottom: 20px; right: 20px; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 8px; z-index: 1000;">
+   Install App
+</button>
+
 <div class="mobile-wrapper">
 
         @if(View::hasSection('showNavbar'))
@@ -117,68 +121,24 @@
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- ============ PWA SCRIPT ============ -->
-    <script>
-        // Register Service Worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('{{ asset('app/js/sw.js') }}')
-                    .then(function(registration) {
-                        console.log('Service Worker registered with scope:', registration.scope);
-                    })
-                    .catch(function(error) {
-                        console.log('Service Worker registration failed:', error);
-                    });
-            });
-        }
-
-        // Online/Offline Detection
-        window.addEventListener('online', function() {
-            console.log('You are online');
-            // Bisa tambahkan notifikasi atau reload
-            showNotification('Back online', 'success');
-        });
-
-        window.addEventListener('offline', function() {
-            console.log('You are offline');
-            showNotification('You are offline - app needs internet', 'warning');
-        });
-
-        function showNotification(message, type) {
-            // Simple notification
-            alert(message);
-        }
-
-        // Install Prompt
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent Chrome 67 and earlier from automatically showing the prompt
-            e.preventDefault();
-            // Stash the event so it can be triggered later
-            deferredPrompt = e;
-            
-            // Show install button (optional)
-            showInstallButton();
-        });
-
-        function showInstallButton() {
-            // Buat button install jika mau
-            console.log('App can be installed');
-        }
-
-        function installPWA() {
-            if(deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted install');
-                    }
-                    deferredPrompt = null;
-                });
-            }
-        }
-        // ======================================
-    </script>
+<script src="{{ asset('/sw.js') }}"></script>
+<script>
+   if ("serviceWorker" in navigator) {
+      // Register a service worker hosted at the root of the
+      // site using the default scope.
+      navigator.serviceWorker.register("/sw.js").then(
+      (registration) => {
+         console.log("Service worker registration succeeded:", registration);
+      },
+      (error) => {
+         console.error(`Service worker registration failed: ${error}`);
+      },
+    );
+  } else {
+     console.error("Service workers are not supported.");
+  }
+</script>
+ <script src="{{ asset('pwa-install.js') }}"></script>
 
 </body>
 </html>
