@@ -46,7 +46,7 @@
     <div id="cardList">
 
       @forelse ($product_laptops as $item)
-        <div class="card mb-2 product-card">
+        <div class="card mt-1 mb-2 product-card shadow-sm card-feature">
           <div class="card-body">
 
             <!-- Judul -->

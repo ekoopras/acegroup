@@ -25,11 +25,11 @@
 <section style="padding: 70px 0 100px 0">
     <div class="container">
 
-        <div class="card rounded-0">
+        <div class="card mt-1 mb-2 p-2 product-card shadow-sm card-feature">
             <div class="card-body">
 
                 <div class="mb-3">
-                    <label class="form-label">Nama Barang</label>
+                    <label class="form-label fw-semibold">Nama Barang</label>
                     <input type="text"
                            name="barang"
                            class="form-control"
@@ -39,15 +39,16 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Merek</label>
+                    <label class="form-label fw-semibold">Merek</label>
                     <input type="text" name="merek" class="form-control"
+                        placeholder="Masukan Merek Barang"
                         value="{{ old('merek') }}">
                 </div>
 
 
 
                     <div class="mb-3">
-                        <label class="form-label">Kondisi</label>
+                        <label class="form-label fw-semibold">Kondisi</label>
                         <select name="kondisi" class="form-select" required>
                             <option value="">-- Pilih Kondisi --</option>
                             <option value="original new">Original New</option>
@@ -61,7 +62,7 @@
         
 
                 <div class="mb-3">
-                    <label class="form-label">Harga</label>
+                    <label class="form-label fw-semibold">Harga Rp.</label>
                     <input type="text"
                         name="harga"
                         id="harga"
@@ -72,8 +73,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Keterangan</label>
-                    <textarea name="keterangan" class="form-control">{{ old('keterangan') }}</textarea>
+                    <label class="form-label fw-semibold">Keterangan</label>
+                    <textarea name="keterangan" class="form-control" placeholder="Masukan Keterangan">{{ old('keterangan') }}</textarea>
                 </div>
 
 
