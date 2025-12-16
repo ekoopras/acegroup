@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <!-- PWA  -->
-    <meta name="theme-color" content="#6777ef"/>
+    <meta name="theme-color" content="#7633f9"/>
     <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
 
@@ -30,7 +30,7 @@
 
         /* Header */
         .header-bg {
-            background: #0066ff;
+            background: #7633f9;
             color: white;
             padding: 40px 20px 80px;
             border-bottom-left-radius: 40px;
@@ -54,7 +54,7 @@
         /* Topics */
         .topic-box {
             background: white;
-            padding: 18px;
+            padding: 10px;
             border-radius: 18px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);

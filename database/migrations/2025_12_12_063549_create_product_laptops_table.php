@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('product_laptops', function (Blueprint $table) {
             $table->id();
             $table->string('barang')->require();
-            $table->enum('kondisi', ['baru', 'bekas'])->nullable();
+            $table->string('merek')->nullable();
+            $table->string('kondisi')->require();
             $table->string('harga')->require();
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

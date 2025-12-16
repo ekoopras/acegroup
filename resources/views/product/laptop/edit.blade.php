@@ -2,7 +2,7 @@
 
 @section('content')
 
-<nav class="navbar fixed-top" style="background-color: #0066ff">
+<nav class="navbar fixed-top" style="background-color: #7633f9">
   <div class="container position-relative">
 
     <!-- Tombol Back -->
@@ -19,8 +19,7 @@
   </div>
 </nav>
 
-<form action="{{ route('product-laptop.update', ['product_laptop' => $product_laptops->id]) }}"
-      method="POST">
+<form action="{{ route('product-laptop.update', $product_laptop->id) }}" method="POST">
 @csrf
 @method('PUT')
 
@@ -37,32 +36,52 @@
                            name="barang"
                            class="form-control"
                            placeholder="Masukan Nama Barang"
-                           value="{{ old('barang', $product_laptops->barang) }}"
+                           value="{{ old('barang', $product_laptop->barang) }}"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Merek</label>
+                    <input type="text"
+                           name="barang"
+                           class="form-control"
+                           placeholder="Masukan Nama Barang"
+                           value="{{ old('merek', $product_laptop->merek) }}"
                            required>
                 </div>
 
                 <!-- Kondisi -->
-                <div class="mb-3">
-                    <label class="form-label d-block">Kondisi</label>
+               <div class="mb-3">
+    <label class="form-label">Kondisi</label>
+    <select name="kondisi" class="form-select" required>
+        <option value="">-- Pilih Kondisi --</option>
 
-                    <div class="form-check">
-                        <input class="form-check-input"
-                               type="radio"
-                               name="kondisi"
-                               value="Baru"
-                               {{ old('kondisi', $product_laptops->kondisi) == 'Baru' ? 'checked' : '' }}>
-                        <label class="form-check-label">Baru</label>
-                    </div>
+        <option value="original new"
+            {{ old('kondisi', $product_laptop->kondisi) == 'original new' ? 'selected' : '' }}>
+            Original New
+        </option>
 
-                    <div class="form-check">
-                        <input class="form-check-input"
-                               type="radio"
-                               name="kondisi"
-                               value="Bekas"
-                               {{ old('kondisi', $product_laptops->kondisi) == 'Bekas' ? 'checked' : '' }}>
-                        <label class="form-check-label">Bekas</label>
-                    </div>
-                </div>
+        <option value="original 2nd"
+            {{ old('kondisi', $product_laptop->kondisi) == 'original 2nd' ? 'selected' : '' }}>
+            Original 2nd
+        </option>
+
+        <option value="grade a new"
+            {{ old('kondisi', $product_laptop->kondisi) == 'grade a new' ? 'selected' : '' }}>
+            Grade A New
+        </option>
+
+        <option value="grade a 2nd"
+            {{ old('kondisi', $product_laptop->kondisi) == 'grade a 2nd' ? 'selected' : '' }}>
+            Grade A 2nd
+        </option>
+
+        <option value="grade b new"
+            {{ old('kondisi', $product_laptop->kondisi) == 'grade b new' ? 'selected' : '' }}>
+            Grade B New
+        </option>
+    </select>
+</div>
 
                 <!-- Harga -->
                 <div class="mb-3">
@@ -72,8 +91,15 @@
                            id="harga"
                            class="form-control"
                            placeholder="Rp."
-                           value="{{ old('harga', number_format($product_laptops->harga,0,',','.')) }}"
+                           value="{{ old('harga', number_format($product_laptop->harga,0,',','.')) }}"
                            required>
+                </div>
+
+        
+
+                <div class="mb-3">
+                    <label class="form-label">Keterangan</label>
+                    <textarea name="keterangan" class="form-control">{{ old('keterangan', $product_laptop->keterangan) }}</textarea>
                 </div>
 
             </div>
@@ -86,7 +112,7 @@
 <nav class="bottom-nav fixed-bottom bg-white border-top">
     <div class="container">
         <div class="d-grid gap-2 col-12 mx-auto py-2">
-            <button class="btn btn-primary" type="submit">
+            <button class="btn text-white" style="background-color: #7633f9" type="submit">
                 Update Data
             </button>
         </div>

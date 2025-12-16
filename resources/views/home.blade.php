@@ -48,37 +48,61 @@
         <!-- TOPICS -->
         <h6 class="fw-bold mt-4 mb-3">Produk</h6>
 
-        <div class="row g-3 pb-5 mb-5">
-            <div class="col-6">
+        <div class="row g-3 pb-5 mb-5 ">
+
+            <div class="col-3 text-center">
                 <a href="{{ route('product-laptop.index') }}" class="text-decoration-none text-dark">
                     <div class="topic-box">
-                        <i class="bi bi-laptop-fill fs-1"></i>
-                        <div class="fw-semibold small">Laptop</div>
+                        <div class="icon-circle text-white" style="background-color: #ffd8f4">
+                           
+                            <i class="bi bi-laptop-fill fs-1" style="color: #ca4da7"></i>
+                        </div>
+                        <div class="fw-semibold small mt-1" style="font-size: 12px">Laptop</div>
                     </div>
                 </a>
             </div>
 
-            <div class="col-6">
+            <div class="col-3 text-center">
                 <div class="topic-box">
-                    <i class="bi bi-pc-display fs-1"></i>
-                    <div class="fw-semibold small">Komputer</div>
+                    <div class="icon-circle text-white" style="background-color: #eae7fe">
+                        <i class="bi bi-pc-display fs-1" style="color: #8473e4"></i>
+                    </div>
+                    <div class="fw-semibold small mt-1" style="font-size: 12px">Komputer</div>
                 </div>
             </div>
 
-            <div class="col-6">
+
+            <div class="col-3 text-center">
                 <div class="topic-box">
-                    <i class="bi bi-printer-fill fs-1"></i>
-                    <div class="fw-semibold small">Printer</div>
+                    <div class="icon-circle text-white" style="background-color: #d8f6fe">
+                        <i class="bi bi-printer-fill fs-1" style="color: #75b7cd"></i>
+                    </div>
+                    <div class="fw-semibold small mt-1" style="font-size: 12px">Printer</div>
                 </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-3 text-center">
                 <div class="topic-box">
-                    <i class="bi bi-apple fs-1"></i>
-                    <div class="fw-semibold small">Macbook</div>
+                    <div class="icon-circle text-white" style="background-color: #ffd8a4">
+                        <i class="bi bi-apple fs-1" style="color: #ff9b29"></i>
+                    </div>
+                    <div class="fw-semibold mt-1" style="font-size: 12px">Macbook</div>
                 </div>
             </div>
         </div>
 </div>
+
+<style>
+    .icon-circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+</style>
 
 @endsection

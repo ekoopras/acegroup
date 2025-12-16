@@ -9,12 +9,10 @@ class ProductLaptopController extends Controller
 {
     public function index(){
         $product_laptops = ProductLaptop::latest()->get();
-        return view(
-            'product.laptop.index', [
-                'title' => 'Produk Laptop'
-            ],
-            compact('product_laptops')
-        );
+        return view('product.laptop.index', [
+            'title' => 'Produk Laptop',
+            'product_laptops' => $product_laptops
+        ]);
     }
 
     public function create(){
@@ -23,53 +21,69 @@ class ProductLaptopController extends Controller
     ]);
     }
 
-   public function store(Request $request)
-{
-    $request->validate([
-    'barang' => 'required|string',
-    'kondisi'  => 'required|in:Baru,Bekas',
-    'harga'  => 'required',
-]);
 
-    $harga = str_replace('.', '', $request->harga);
-
-    ProductLaptop::create([
-        'barang' => $request->barang,
-        'kondisi'  => $request->kondisi,
-        'harga'  => $harga,
-    ]);
-
-    return redirect()->route('product-laptop.index')
-        ->with('success', 'Data berhasil disimpan');
-}
-
-    public function edit(ProductLaptop $product_laptops)
+    // STORE
+    public function store(Request $request)
     {
-        return view('product.laptop.edit', [
-                'title' => 'Edit Produk Laptop'
-            ],
-            compact('product_laptops')
-        );
-    }
-
-    public function update(Request $request, ProductLaptop $product_laptops)
-    {
-        $request->validate([
-            'barang' => 'required',
-            'stock'  => 'required|numeric',
-            'harga'  => 'required',
+        $validated = $request->validate([
+            'barang'     => 'required|string|max:255',
+            'merek'      => 'nullable|string|max:255',
+            'kondisi'    => 'required',
+            'harga'      => 'required',
+            'keterangan' => 'nullable|string',
         ]);
 
-        $product_laptops->update($request->all());
+        // normalisasi harga
+        $validated['harga'] = str_replace('.', '', $request->harga);
 
-        return redirect()->route('product-laptop.index')
+        ProductLaptop::create($validated);
+
+        return redirect()
+            ->route('product-laptop.index')
+            ->with('success', 'Data berhasil disimpan');
+    }
+
+     // EDIT
+    public function edit(ProductLaptop $product_laptop)
+    {
+        return view('product.laptop.edit', [
+            'title' => 'Edit Produk Laptop',
+            'product_laptop' => $product_laptop
+        ]);
+    }
+
+    // UPDATE
+    // =====================
+    public function update(Request $request, ProductLaptop $product_laptop)
+    {
+        $validated = $request->validate([
+            'barang'     => 'required|string|max:255',
+            'merek'      => 'nullable|string|max:255',
+            'kondisi'    => 'required',
+            'harga'      => 'required',
+            'keterangan' => 'nullable|string',
+        ]);
+
+        $validated['harga'] = str_replace('.', '', $request->harga);
+
+        $product_laptop->update($validated);
+
+        return redirect()
+            ->route('product-laptop.index')
             ->with('success', 'Data berhasil diupdate');
     }
 
-    public function destroy(ProductLaptop  $product_laptops)
+    public function destroy(ProductLaptop $product_laptop)
     {
-        $product_laptops->delete();
-        return back()->with('success', 'Data berhasil dihapus');
+        $product_laptop->delete();
+
+        return redirect()
+            ->route('product-laptop.index')
+            ->with('success', 'Data berhasil dihapus');
     }
+
+
+
+
 
 }

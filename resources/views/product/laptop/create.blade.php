@@ -2,7 +2,7 @@
 
 @section('content')
 
-<nav class="navbar fixed-top" style="background-color: #0066ff">
+<nav class="navbar fixed-top" style="background-color: #7633f9">
   <div class="container position-relative">
 
     <!-- Tombol Back -->
@@ -39,37 +39,44 @@
                 </div>
 
                 <div class="mb-3">
-                <label class="form-label d-block">Kondisi</label>
-
-                <div class="form-check">
-                    <input class="form-check-input"
-                        type="radio"
-                        name="kondisi"
-                        value="Baru"
-                        {{ old('kondisi') == 'Baru' ? 'checked' : '' }}>
-                    <label class="form-check-label">Baru</label>
+                    <label class="form-label">Merek</label>
+                    <input type="text" name="merek" class="form-control"
+                        value="{{ old('merek') }}">
                 </div>
 
-                <div class="form-check">
-                    <input class="form-check-input"
-                        type="radio"
-                        name="kondisi"
-                        value="Bekas"
-                        {{ old('kondisi') == 'Bekas' ? 'checked' : '' }}>
-                    <label class="form-check-label">Bekas</label>
-                </div>
-            </div>
+
+
+                    <div class="mb-3">
+                        <label class="form-label">Kondisi</label>
+                        <select name="kondisi" class="form-select" required>
+                            <option value="">-- Pilih Kondisi --</option>
+                            <option value="original new">Original New</option>
+                            <option value="original 2nd">Original 2nd</option>
+                            <option value="grade a new">Grade A New</option>
+                            <option value="grade a 2nd">Grade A 2nd</option>
+                            <option value="grade b new">Grade B New</option>
+                        </select>
+                    </div>
+
+        
 
                 <div class="mb-3">
-    <label class="form-label">Harga</label>
-    <input type="text"
-           name="harga"
-           id="harga"
-           class="form-control"
-           placeholder="Rp."
-           value="{{ old('harga') }}"
-           required>
-</div>
+                    <label class="form-label">Harga</label>
+                    <input type="text"
+                        name="harga"
+                        id="harga"
+                        class="form-control"
+                        placeholder="Rp."
+                        value="{{ old('harga') }}"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Keterangan</label>
+                    <textarea name="keterangan" class="form-control">{{ old('keterangan') }}</textarea>
+                </div>
+
+
 
 
             </div>
@@ -82,7 +89,7 @@
 <nav class="bottom-nav fixed-bottom bg-white border-top">
     <div class="container">
         <div class="d-grid gap-2 col-12 mx-auto py-2">
-            <button class="btn btn-primary" type="submit">
+            <button class="btn text-white" style="background-color: #7633f9" type="submit">
                 Simpan Data
             </button>
         </div>

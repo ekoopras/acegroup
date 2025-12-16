@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top" style="background-color: #0066ff">
+<nav class="navbar fixed-top" style="background-color: #7633f9">
   <div class="container position-relative">
 
     <!-- Tombol Back -->

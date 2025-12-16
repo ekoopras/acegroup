@@ -8,7 +8,9 @@ class ProductLaptop extends Model
 {
     protected $fillable = [
         'barang',
+        'merek',
         'kondisi',
         'harga',
+        'keterangan',
     ];
 }

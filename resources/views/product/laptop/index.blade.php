@@ -72,10 +72,18 @@
                 <i class="bi bi-pencil"></i> Edit
               </a>
 
-              <a href=""
-                 class="btn btn-sm btn-primary">
+              <button class="btn btn-sm btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#viewModal"
+                    data-barang="{{ $item->barang }}"
+                    data-merek="{{ $item->merek }}"
+                    data-kondisi="{{ ucfirst($item->kondisi) }}"
+                    data-harga="{{ number_format($item->harga, 0, ',', '.') }}"
+                    data-keterangan="{{ $item->keterangan }}">
+
                 <i class="bi bi-eye"></i> View
-              </a>
+              </button>
+
 
               <!-- Delete -->
               <form action="{{ route('product-laptop.destroy', $item->id) }}"
@@ -111,13 +119,37 @@
         <div class="d-grid gap-2 col-12 mx-auto py-2">
 
             <a href="{{ route('product-laptop.create') }}"
-               class="btn btn-primary">
+               class="btn text-white" style="background-color: #7633f9">
                 <i class="bi bi-plus-lg"></i> Tambah Produk
             </a>
 
         </div>
     </div>
 </nav>
+
+@include('product.laptop.view')
+<script>
+document.getElementById('viewModal')
+    .addEventListener('show.bs.modal', function (event) {
+
+        let button = event.relatedTarget;
+
+        document.getElementById('viewBarang').innerText =
+            button.getAttribute('data-barang');
+
+        document.getElementById('viewMerek').innerText =
+            button.getAttribute('data-merek');
+
+        document.getElementById('viewKondisi').innerText =
+            button.getAttribute('data-kondisi');
+
+        document.getElementById('viewHarga').innerText =
+            'Rp ' + button.getAttribute('data-harga');
+
+        document.getElementById('viewKeterangan').innerText =
+            button.getAttribute('data-keterangan');
+    });
+</script>
 
 
 
@@ -137,3 +169,4 @@ document.getElementById('searchCard').addEventListener('keyup', function() {
 
 
 @endsection
+
