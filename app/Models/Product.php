@@ -4,13 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductLaptop extends Model
+class Product extends Model
 {
     protected $fillable = [
+        'category_id',
         'barang',
         'merek',
         'kondisi',
         'harga',
         'keterangan',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

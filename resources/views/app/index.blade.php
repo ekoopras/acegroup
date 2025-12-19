@@ -11,8 +11,10 @@
                 class="header-logo">
 
             <div class="d-flex align-items-center">
-                <span class="me-2 text-white fw-semibold">Hai, User</span>
-                <img src="https://via.placeholder.com/100" class="header-profile" alt="">
+                <span class="me-2 text-white fw-semibold">Hai, {{ Auth::user()->name }}</span>
+                {{-- <img src="{{ Auth::user()->avatar }}" class="header-profile rounded-circle" alt="Profile"> --}}
+                <img src="{{ Auth::user()->avatar ?? asset('images/default-avatar.png') }}"
+                    class="header-profile rounded-circle" alt="">
             </div>
         </div>
 
