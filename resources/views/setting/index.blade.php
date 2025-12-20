@@ -25,15 +25,15 @@
 
     <section class="setting" style="padding-top: 130px">
         <div class="container">
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <div class="card mt-10 mb-2 product-card shadow-sm card-feature">
-                    <div class="card-body d-flex align-items-center">
-                        <button class="btn btn-outline-secondary btn-sm">Logout</button>
+            {{-- <form action="{{ route('logout') }}" method="POST"> --}}
+            @csrf
+            <div class="card mt-10 mb-2 product-card shadow-sm card-feature">
+                <div class="card-body d-flex align-items-center">
+                    <button class="btn btn-outline-secondary btn-sm">Logout</button>
 
-                    </div>
                 </div>
-            </form>
+            </div>
+            {{-- </form> --}}
         </div>
     </section>
 

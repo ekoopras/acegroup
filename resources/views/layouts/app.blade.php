@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <!-- PWA  -->
-    <meta name="theme-color" content="#7633f9"/>
+    <meta name="theme-color" content="#7633f9" />
     <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
 
@@ -36,11 +37,12 @@
             border-bottom-left-radius: 40px;
             border-bottom-right-radius: 40px;
         }
+
         .header-profile {
             width: 42px;
             height: 42px;
             border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.6);
+            border: 2px solid rgba(255, 255, 255, 0.6);
             object-fit: cover;
         }
 
@@ -57,39 +59,19 @@
             padding: 10px;
             border-radius: 18px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
+
         .topic-box img {
             width: 55px;
             margin-bottom: 10px;
         }
 
-        /* Bottom menu */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            max-width: 430px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 8px 0 5px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.12);
-            display: flex;
-            justify-content: space-around;
-        }
-        .bottom-nav-item {
-            text-align: center;
-            font-size: 13px;
-            color: #777;
-        }
-        .bottom-nav-item.active {
-            color: #0d6efd;
-            font-weight: 600;
-        }
-        .bottom-nav-item i {
-            font-size: 22px;
-            display: block;
-            margin-bottom: 2px;
+        .card-box {
+            background: white;
+            padding: 10px;
+            border-radius: 13px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
     </style>
 </head>
@@ -97,48 +79,50 @@
 <body>
 
     <!-- Add this inside <body> -->
-<button id="pwa-install-btn" style="display:none; position: fixed; bottom: 20px; right: 20px; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 8px; z-index: 1000;">
-   Install App
-</button>
+    <button id="pwa-install-btn"
+        style="display:none; position: fixed; bottom: 20px; right: 20px; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 8px; z-index: 1000;">
+        Install App
+    </button>
 
-<div class="mobile-wrapper">
+    <div class="mobile-wrapper">
 
-        @if(View::hasSection('showNavbar'))
+        @if (View::hasSection('showNavbar'))
             @include('layouts.header')
         @endif
 
 
         @yield('content')
 
-         @if(View::hasSection('showBottonMenu'))
+        @if (View::hasSection('showBottonMenu'))
             @include('layouts.bottom-menu')
         @endif
 
-    
 
-</div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
 
-<script src="{{ asset('/sw.js') }}"></script>
-<script>
-   if ("serviceWorker" in navigator) {
-      // Register a service worker hosted at the root of the
-      // site using the default scope.
-      navigator.serviceWorker.register("/sw.js").then(
-      (registration) => {
-         console.log("Service worker registration succeeded:", registration);
-      },
-      (error) => {
-         console.error(`Service worker registration failed: ${error}`);
-      },
-    );
-  } else {
-     console.error("Service workers are not supported.");
-  }
-</script>
- <script src="{{ asset('pwa-install.js') }}"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="{{ asset('/sw.js') }}"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            // Register a service worker hosted at the root of the
+            // site using the default scope.
+            navigator.serviceWorker.register("/sw.js").then(
+                (registration) => {
+                    console.log("Service worker registration succeeded:", registration);
+                },
+                (error) => {
+                    console.error(`Service worker registration failed: ${error}`);
+                },
+            );
+        } else {
+            console.error("Service workers are not supported.");
+        }
+    </script>
+    <script src="{{ asset('pwa-install.js') }}"></script>
 
 </body>
+
 </html>

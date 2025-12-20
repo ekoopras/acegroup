@@ -1,7 +1,7 @@
 {
     "name": "Laravel Package Tutorial",
-    "short_name": "LPT",
-    "start_url": "/",
+    "short_name": "ACEAPP",
+    "start_url": "/apps",
     "background_color": "#6777ef",
     "description": "Tutorial of Laravel Package",
     "display": "standalone",

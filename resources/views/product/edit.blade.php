@@ -24,7 +24,7 @@
         <section style="padding: 70px 0 100px 0">
             <div class="container">
 
-                <div class="card card mt-1 mb-2 p-2 product-card shadow-sm card-feature">
+                <div class="card-box p-3">
                     <div class="card-body">
 
                         <!-- Nama Barang -->

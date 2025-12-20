@@ -51,11 +51,11 @@
             <div id="cardList">
 
                 @forelse ($products as $item)
-                    <div class="card mt-1 mb-2 product-card shadow-sm card-feature">
+                    <div class="card-box p-3">
                         <div class="card-body">
 
                             <!-- Judul -->
-                            <h5 class="mb-1">{{ $item->barang }}</h5>
+                            <h5 class="mb-1 text-capitalize">{{ $item->barang }}</h5>
 
                             <!-- Kondisi -->
                             <small class="text-muted">
@@ -63,41 +63,46 @@
                             </small>
                             <br>
 
-                            <!-- Harga -->
-                            <strong class="text-primary">
-                                Rp {{ number_format($item->harga, 0, ',', '.') }}
-                            </strong>
+
 
                             <!-- Tombol Action -->
-                            <div class="d-flex gap-2 mt-3">
+                            <div class="d-flex justify-content-between align-items-center mt-3">
 
-                                <!-- Edit -->
-                                <a href="{{ route('product.edit', [$category->slug, $item->id]) }}"
-                                    class="btn btn-sm btn-success">
-                                    <i class="bi bi-pencil"></i> Edit
-                                </a>
+                                <!-- Harga (Kiri) -->
+                                <strong class="text-primary fs-6">
+                                    Rp {{ number_format($item->harga, 0, ',', '.') }}
+                                </strong>
 
-                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#viewModal"
-                                    data-barang="{{ $item->barang }}" data-merek="{{ $item->merek }}"
-                                    data-kondisi="{{ ucfirst($item->kondisi) }}"
-                                    data-harga="{{ number_format($item->harga, 0, ',', '.') }}"
-                                    data-keterangan="{{ $item->keterangan }}">
+                                <!-- Action (Kanan) -->
+                                <div class="d-flex gap-2">
 
-                                    <i class="bi bi-eye"></i> View
-                                </button>
+                                    <!-- Edit -->
+                                    <a href="{{ route('product.edit', [$category->slug, $item->id]) }}"
+                                        class="btn btn-sm btn-success">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
 
-
-                                <!-- Delete -->
-                                <form action="{{ route('product.destroy', [$category->slug, $item->id]) }}" method="POST"
-                                    onsubmit="return confirm('Yakin ingin menghapus data ini?')">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn btn-sm btn-danger">
-                                        <i class="bi bi-trash"></i> Hapus
+                                    <!-- View -->
+                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#viewModal" data-barang="{{ $item->barang }}"
+                                        data-merek="{{ $item->merek }}" data-kondisi="{{ ucfirst($item->kondisi) }}"
+                                        data-harga="{{ number_format($item->harga, 0, ',', '.') }}"
+                                        data-keterangan="{{ $item->keterangan }}">
+                                        <i class="bi bi-eye"></i>
                                     </button>
-                                </form>
 
+                                    <!-- Delete -->
+                                    <form action="{{ route('product.destroy', [$category->slug, $item->id]) }}"
+                                        method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+
+                                </div>
                             </div>
 
                         </div>

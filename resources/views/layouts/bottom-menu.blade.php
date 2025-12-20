@@ -1,50 +1,71 @@
-<!-- BOTTOM NAVIGATION -->
-<nav class="bottom-nav">
+<nav class="bottom-nav fixed-bottom bg-white border-top">
+    <div class="container">
+        <div class="d-flex justify-content-between text-center py-2">
 
-    <a href="{{ route('apps.index') }}" class="bottom-nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
-        <i class="bi bi-house-fill"></i>
-        <span>Home</span>
-    </a>
+            <a href="{{ route('apps.index') }}"
+                class="nav-item text-decoration-none
+               {{ request()->routeIs('apps.index') ? 'active' : '' }}">
+                <div class="icon-wrapper">
+                    <i class="bi bi-house-fill"></i>
+                </div>
+                <small>Home</small>
+            </a>
 
-    <a href="{{ route('notifikasi.index') }}"
-        class="bottom-nav-item {{ request()->routeIs('notifikasi.*') ? 'active' : '' }}">
-        <i class="bi bi-bell-fill"></i>
-        <span>Notifikasi</span>
-    </a>
+            <a href="#" class="nav-item text-decoration-none">
+                <div class="icon-wrapper">
+                    <i class="bi  bi-grid-fill"></i>
+                </div>
+                <small>Service</small>
+            </a>
 
-    <a href="{{ route('setting.index') }}" class="bottom-nav-item {{ request()->routeIs('setting.*') ? 'active' : '' }}">
-        <i class="bi bi-gear-fill"></i>
-        <span>Setting</span>
-    </a>
+            <a href="{{ route('notifikasi.index') }}"
+                class="nav-item text-decoration-none
+               {{ request()->routeIs('notifikasi.index') ? 'active' : '' }}">
+                <div class="icon-wrapper">
+                    <i class="bi bi-bell"></i>
+                </div>
+                <small>Notifikasi</small>
+            </a>
 
+            <a href="#" class="nav-item text-decoration-none">
+                <div class="icon-wrapper">
+                    <i class="bi  bi-person-fill"></i>
+                </div>
+                <small>Profile</small>
+            </a>
+
+        </div>
+    </div>
 </nav>
-
 <style>
     .bottom-nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: #fff;
-        display: flex;
-        border-top: 1px solid #ddd;
-        z-index: 999;
+        height: 60px;
+        z-index: 1030;
     }
 
-    .bottom-nav-item {
+    .bottom-nav .nav-item {
         flex: 1;
-        text-align: center;
-        text-decoration: none;
-        color: #666;
-        font-size: 12px;
+        font-size: 15px;
+        color: #9ca3af;
+        /* abu */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
     }
 
-    .bottom-nav-item i {
-        display: block;
-        font-size: 20px;
+    .bottom-nav .nav-item i {
+        font-size: 18px;
+        line-height: 1;
     }
 
-    .bottom-nav-item.active {
+    .bottom-nav .nav-item.active {
+        color: #7633f9;
+        /* biru aktif */
+    }
+
+    .bottom-nav .nav-item.active i {
         color: #7633f9;
     }
 </style>
