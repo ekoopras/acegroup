@@ -27,7 +27,9 @@
                 <small>Notifikasi</small>
             </a>
 
-            <a href="#" class="nav-item text-decoration-none">
+            <a href="{{ route('profile.index') }}"
+                class="nav-item text-decoration-none
+               {{ request()->routeIs('profile.index') ? 'active' : '' }}">
                 <div class="icon-wrapper">
                     <i class="bi  bi-person-fill"></i>
                 </div>

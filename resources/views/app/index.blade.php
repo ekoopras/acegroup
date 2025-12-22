@@ -7,14 +7,14 @@
     <!-- HEADER -->
     <div class="header-bg">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <img src="{{ asset('storage/logo.png') }}" alt="Logo" class="header-logo">
 
-            {{-- <div class="d-flex align-items-center"> --}}
-            {{-- <span class="me-2 text-white fw-semibold">Hai, {{ Auth::user()->name }}</span> --}}
-            {{-- <img src="{{ Auth::user()->avatar }}" class="header-profile rounded-circle" alt="Profile"> --}}
-            {{-- <img src="{{ Auth::user()->avatar ?? asset('images/default-avatar.png') }}" --}}
-            {{-- class="header-profile rounded-circle" alt="">
-            </div> --}}
+            <div class="d-flex align-items-center">
+                {{-- <img src="{{ Auth::user()->avatar }}" class="header-profile rounded-circle" alt="Profile"> --}}
+                <img src="{{ Auth::user()->avatar ?? asset('images/default-avatar.png') }}"
+                    class="header-profile rounded-circle" alt="">
+                <span class="p-2 text-white fw-semibold">Hai, {{ Auth::user()->name }}</span>
+
+            </div>
         </div>
 
     </div>
@@ -121,6 +121,9 @@
 
 
     </div>
+
+
+
 
     <style>
         .icon-circle {
