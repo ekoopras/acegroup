@@ -36,6 +36,7 @@
                             <input class="form-check-input" type="checkbox">
                         </div>
                     </a>
+
                     <!-- Username -->
                     <a href="#" class="list-group-item d-flex align-items-center" data-bs-toggle="modal"
                         data-bs-target="#modalUsername">
@@ -47,26 +48,31 @@
                         <i class="bi bi-chevron-right text-muted"></i>
                     </a>
 
-                    <a href="#" class="list-group-item d-flex align-items-center">
+
+
+                    <a href="#" class="list-group-item d-flex align-items-center" data-bs-toggle="modal"
+                        data-bs-target="#modalEmail">
                         <span class="icon-box bg-primary text-white me-3">
-                            <i class="bi bi-wifi"></i>
+                            <i class="bi bi-envelope"></i>
                         </span>
                         <span class="flex-grow-1">Email</span>
-                        <small class="text-muted me-2">HomeNet</small>
+                        <small class="text-muted me-2">{{ auth()->user()->email }}</small>
                         <i class="bi bi-chevron-right text-muted"></i>
                     </a>
-                    <a href="#" class="list-group-item d-flex align-items-center">
+
+
+                    <a href="#" class="list-group-item d-flex align-items-center" data-bs-toggle="modal"
+                        data-bs-target="#modalPassword">
                         <span class="icon-box bg-primary text-white me-3">
-                            <i class="bi bi-wifi"></i>
+                            <i class="bi bi-lock"></i>
                         </span>
                         <span class="flex-grow-1">Password</span>
-                        <small class="text-muted me-2">HomeNet</small>
+                        <small class="text-muted me-2">••••••••</small>
                         <i class="bi bi-chevron-right text-muted"></i>
                     </a>
+
                 </div>
             </div>
-            {{-- INCLUDE MODAL --}}
-            @include('profile.modal')
 
             <!-- PROFILE CARD -->
             <div class="card shadow-sm border-0 rounded-4 mt-3">
@@ -80,30 +86,6 @@
             </div>
         </div>
     </section>
-
-    <div class="modal fade" id="modalUsername" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <form action="{{ route('profile.update.name') }}" method="POST" class="modal-content rounded-4 border-0">
-                @csrf
-                @method('PUT')
-
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit User Name</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <div class="modal-body">
-                    <input type="text" name="name" class="form-control" value="{{ auth()->user()->name }}" required>
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
 
     <style>
         .profile-section {
@@ -129,6 +111,9 @@
             border-top: 1px solid #f1f1f1;
         }
     </style>
+
+    {{-- INCLUDE MODAL --}}
+    @include('profile.modal')
 
 
 

@@ -5,47 +5,45 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    public function index()
+    public function edit()
     {
-        return view('profile.index', [
+        return view('profile.edit', [
             'user' => Auth::user()
         ]);
     }
 
     public function update(Request $request)
     {
-        $user = Auth::user();
+        $user = auth()->user();
 
-        $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email',
-            'avatar'   => 'nullable|image|max:2048',
-            'password' => 'nullable|min:6|confirmed',
-        ]);
-
-        // Update avatar
-        if ($request->hasFile('avatar')) {
-            if ($user->avatar) {
-                Storage::delete('public/' . $user->avatar);
-            }
-
-            $path = $request->file('avatar')->store('avatar', 'public');
-            $user->avatar = $path;
+        if ($request->type === 'name') {
+            $request->validate([
+                'name' => 'required|string|max:255',
+            ]);
+            $user->name = $request->name;
         }
 
-        // Update password jika diisi
-        if ($request->password) {
-            $user->password = Hash::make($request->password);
+        if ($request->type === 'email') {
+            $request->validate([
+                'email' => 'required|email|unique:users,email,' . $user->id,
+            ]);
+            $user->email = $request->email;
         }
 
-        $user->name  = $request->name;
-        $user->email = $request->email;
+        if ($request->type === 'password') {
+            $request->validate([
+                'password' => 'required|confirmed|min:8',
+            ]);
+            $user->password = bcrypt($request->password);
+        }
+
         $user->save();
 
-        return back()->with('success', 'Profile berhasil diperbarui');
+        return back()->with('success', 'Data berhasil diperbarui');
     }
 }

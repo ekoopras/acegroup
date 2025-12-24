@@ -62,7 +62,7 @@
 
                             <i class="bi bi-laptop-fill fs-1" style="color: #ca4da7"></i>
                         </div>
-                        <div class="fw-semibold small" style="font-size: 12px">Laptop</div>
+                        <div class="fw-medium small" style="font-size: 12px">Laptop</div>
                     </div>
                 </a>
             </div>
@@ -74,7 +74,7 @@
                         <div class="icon-circle text-white" style="background-color: #eae7fe">
                             <i class="bi bi-pc-display fs-1" style="color: #8473e4"></i>
                         </div>
-                        <div class="fw-semibold small" style="font-size: 12px">Komputer</div>
+                        <div class="fw-medium small" style="font-size: 12px">Komputer</div>
                     </div>
                 </a>
             </div>
@@ -86,7 +86,7 @@
                         <div class="icon-circle text-white" style="background-color: #d8f6fe">
                             <i class="bi bi-printer-fill fs-1" style="color: #75b7cd"></i>
                         </div>
-                        <div class="fw-semibold small" style="font-size: 12px">Printer</div>
+                        <div class="fw-medium small" style="font-size: 12px">Printer</div>
                     </div>
                 </a>
             </div>
@@ -97,7 +97,7 @@
                         <div class="icon-circle text-white" style="background-color: #ffd8a4">
                             <i class="bi bi-apple fs-1" style="color: #ff9b29"></i>
                         </div>
-                        <div class="fw-semibold" style="font-size: 12px">Macbook</div>
+                        <div class="fw-medium" style="font-size: 12px">Macbook</div>
                     </div>
                 </a>
             </div>
@@ -111,7 +111,7 @@
                         <div class="icon-circle text-white" style="background-color: #ffd8a4">
                             <i class="bi bi-tags fs-1" style="color: #ff9b29"></i>
                         </div>
-                        <div class="fw-semibold" style="font-size: 12px">category</div>
+                        <div class="fw-medium" style="font-size: 12px">category</div>
                     </div>
                 </a>
             </div>
