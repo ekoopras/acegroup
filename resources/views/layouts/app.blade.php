@@ -39,8 +39,8 @@
         }
 
         .header-profile {
-            width: 42px;
-            height: 42px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             border: 2px solid rgba(255, 255, 255, 0.6);
             object-fit: cover;

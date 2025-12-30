@@ -4,6 +4,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NotifiController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductLaptopController;
 use App\Http\Controllers\ProfileController;
@@ -38,16 +39,12 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // // MIDDLWWARE
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->prefix('apps')->group(function () {
 
-    Route::get('/apps', [AppController::class, 'index'])
+    Route::get('/', [AppController::class, 'index'])
         ->name('apps.index');
 
-    Route::get('/apps/notifikasi', fn() => view('notifikasi.index'))
-        ->name('notifikasi.index');
-
-    Route::get('/apps/setting', [SettingController::class, 'index'])
-        ->name('setting.index');
+    Route::get('/notifi', [NotifiController::class, 'index'])->name('notifi.index');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');

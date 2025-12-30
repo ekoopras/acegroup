@@ -12,8 +12,8 @@
             <div class="card shadow-sm border-0 rounded-4 mb-3">
                 <div class="card-body d-flex align-items-center">
 
-                    <img src="{{ Auth::user()->avatar ?? asset('images/default-avatar.png') }}" class="rounded-circle me-3"
-                        width="60" height="60" alt="Avatar">
+                    <img src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('images/default-avatar.png') }}"
+                        class="rounded-circle me-3" width="60" height="60" alt="Avatar" style="object-fit: cover">
 
                     <div class="flex-grow-1">
                         <div class="fw-semibold">{{ Auth::user()->name }}</div>
@@ -27,15 +27,20 @@
             <div class="card shadow-sm border-0 rounded-4 mb3">
 
                 <div class="list-group d-flex list-group-flush">
-                    <a href="#" class="list-group-item d-flex align-items-center">
-                        <span class="icon-box bg-warning text-white me-3">
-                            <i class="bi bi-airplane"></i>
+
+                    <a href="#" class="list-group-item d-flex align-items-center" data-bs-toggle="modal"
+                        data-bs-target="#modalAvatar">
+                        <span class="icon-box bg-primary text-white me-3">
+                            <i class="bi bi-person"></i>
                         </span>
-                        <span class="flex-grow-1">Edit Photo Profil</span>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox">
-                        </div>
+                        <span class="flex-grow-1">Photo Profile</span>
+
+                        <img src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('images/default-avatar.png') }}"
+                            class="rounded-circle" width="36" height="36" style="object-fit: cover">
+
+                        <i class="bi bi-chevron-right text-muted ms-2"></i>
                     </a>
+
 
                     <!-- Username -->
                     <a href="#" class="list-group-item d-flex align-items-center" data-bs-toggle="modal"

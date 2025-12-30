@@ -13,7 +13,8 @@ class ProfileController extends Controller
     public function edit()
     {
         return view('profile.edit', [
-            'user' => Auth::user()
+            'user' => Auth::user(),
+            'title' => 'Profile'
         ]);
     }
 
@@ -41,6 +42,10 @@ class ProfileController extends Controller
             ]);
             $user->password = bcrypt($request->password);
         }
+
+        // simpan avatar baru
+        $path = $request->file('avatar')->store('avatars', 'public');
+        $user->avatar = $path;
 
         $user->save();
 

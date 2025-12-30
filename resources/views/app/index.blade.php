@@ -10,8 +10,8 @@
 
             <div class="d-flex align-items-center">
                 {{-- <img src="{{ Auth::user()->avatar }}" class="header-profile rounded-circle" alt="Profile"> --}}
-                <img src="{{ Auth::user()->avatar ?? asset('images/default-avatar.png') }}"
-                    class="header-profile rounded-circle" alt="">
+                <img src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('images/default-avatar.png') }}"
+                    class="header-profile rounded-circle" alt="" width="60px" height="60px">
                 <span class="p-2 text-white fw-semibold">Hai, {{ Auth::user()->name }}</span>
 
             </div>

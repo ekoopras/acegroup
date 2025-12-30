@@ -18,9 +18,9 @@
                 <small>Service</small>
             </a>
 
-            <a href="{{ route('notifikasi.index') }}"
+            <a href="{{ route('notifi.index') }}"
                 class="nav-item text-decoration-none
-               {{ request()->routeIs('notifikasi.index') ? 'active' : '' }}">
+               {{ request()->routeIs('notifi.index') ? 'active' : '' }}">
                 <div class="icon-wrapper">
                     <i class="bi bi-bell"></i>
                 </div>

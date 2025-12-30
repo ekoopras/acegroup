@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Notifi;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -41,7 +43,16 @@ class ProductController extends Controller
         // normalisasi harga
         $validated['harga'] = str_replace('.', '', $request->harga);
 
-        Product::create($validated);
+        // SIMPAN PRODUCT
+        $product = Product::create($validated);
+
+        // 🔔 SIMPAN NOTIFIKASI
+        Notifi::create([
+            'user_id' => Auth::id(),
+            'title'   => 'Product Baru',
+            'message' => Auth::user()->name . ' menambahkan product: ' . $product->barang,
+            'type'    => 'product_create',
+        ]);
 
         // redirect ke halaman category
         $category = Category::find($request->category_id);
@@ -82,6 +93,14 @@ class ProductController extends Controller
         // UPDATE DATA (INI KUNCINYA)
         $product->update($validated);
 
+        // 🔔 SIMPAN NOTIFIKASI
+        Notifi::create([
+            'user_id' => Auth::id(),
+            'title'   => 'Product Diperbarui',
+            'message' => Auth::user()->name . ' memperbarui product: ' . $product->barang,
+            'type'    => 'product_update',
+        ]);
+
         return redirect()
             ->route('product.index', $category->slug)
             ->with('success', 'Product berhasil diupdate');
@@ -95,7 +114,17 @@ class ProductController extends Controller
             abort(404);
         }
 
+        $productName = $product->barang;
+
         $product->delete();
+
+        // 🔔 SIMPAN NOTIFIKASI
+        Notifi::create([
+            'user_id' => Auth::id(),
+            'title'   => 'Product Dihapus',
+            'message' => Auth::user()->name . ' menghapus product: ' . $productName,
+            'type'    => 'product_delete',
+        ]);
 
         return redirect()
             ->route('product.index', $category->slug)

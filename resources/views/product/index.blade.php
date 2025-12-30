@@ -51,7 +51,7 @@
             <div id="cardList">
 
                 @forelse ($products as $item)
-                    <div class="card-box p-3">
+                    <div class="card-box mb-2 p-3">
                         <div class="card-body">
 
                             <!-- Judul -->

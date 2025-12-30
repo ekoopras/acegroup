@@ -5,7 +5,7 @@
         <div class="container position-relative">
 
             <!-- Tombol Back -->
-            <a href="{{ route('setting.index') }}" class="position-absolute start-0 ms-2 text-white">
+            <a href="{{ route('apps.index') }}" class="position-absolute start-0 ms-2 text-white">
                 <i class="bi bi-arrow-left fs-4 text-white p-3"></i>
             </a>
 
@@ -17,47 +17,50 @@
         </div>
     </nav>
 
-
-    <section style="padding: 70px 0 100px 0">
+    <section style="padding: 80px 0 100px 0">
         <div class="container">
 
             <div id="cardList">
 
                 @forelse ($category as $ctg)
-                    <div class="card mt-1 mb-2 product-card shadow-sm card-feature">
-                        <div class="card-body d-flex justify-content-between align-items-center">
+                    <div class="card-box mb-2 p-3">
+                        <div class="card-body">
 
-                            <!-- Kiri: Judul & Slug -->
-                            <div>
-                                <h5 class="mb-1">{{ $ctg->name }}</h5>
+                            <!-- Judul -->
+                            <h5 class="mb-1">{{ $ctg->name }}</h5>
+
+                            <!-- Tombol Action -->
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+
+                                <!-- Harga (Kiri) -->
                                 <small class="text-muted">
                                     SLUG : {{ $ctg->slug }}
                                 </small>
-                            </div>
 
-                            <!-- Kanan: Tombol Action -->
-                            <div class="d-flex gap-2">
+                                <!-- Action (Kanan) -->
+                                <div class="d-flex gap-2">
 
-                                <!-- Edit -->
-                                <a href="{{ route('category.edit', $ctg->id) }}" class="btn btn-sm btn-success">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
+                                    <!-- Edit -->
+                                    <a href="{{ route('category.edit', $ctg->id) }}" class="btn btn-sm btn-success">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
 
-                                <!-- Delete -->
-                                <form action="{{ route('category.destroy', $ctg->id) }}" method="POST"
-                                    onsubmit="return confirm('Yakin ingin menghapus data ini?')">
-                                    @csrf
-                                    @method('DELETE')
 
-                                    <button type="submit" class="btn btn-sm btn-danger">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </form>
+                                    <!-- Delete -->
+                                    <form action="{{ route('category.destroy', $ctg->id) }}" method="POST"
+                                        onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                        @csrf
+                                        @method('DELETE')
 
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+
+                                </div>
                             </div>
 
                         </div>
-
                     </div>
                 @empty
                     <div class="text-center text-muted py-4">
